@@ -1,0 +1,14 @@
+{
+  "name": "url-builder-pro",
+  "version": "1.0.0",
+  "description": "Build URLs with query parameters, path segments, and hash fragments. Perfect for API testing and link generation.",
+  "main": "api/process.js",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "vercel-build": "echo 'Build complete'"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

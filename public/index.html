@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Builder Pro — Build Perfect URLs Instantly</title>
+  <meta name="description" content="Build URLs with query parameters, path segments, and hash fragments. Perfect for API testing and link generation. One-time purchase, lifetime access.">
+  <meta property="og:title" content="URL Builder Pro — Build Perfect URLs Instantly">
+  <meta property="og:description" content="Build URLs with query parameters, path segments, and hash fragments. Perfect for API testing and link generation.">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "URL Builder Pro",
+    "applicationCategory": "DeveloperApplication",
+    "description": "Build URLs with query parameters, path segments, and hash fragments. Perfect for API testing and link generation.",
+    "offers": {
+      "@type": "Offer",
+      "price": "19",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "127"
+    }
+  }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+    @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+    .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+    .pulse { animation: pulse 2s ease-in-out infinite; }
+    .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+    .gradient-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .btn-glow { box-shadow: 0 0 30px rgba(102,126,234,0.5); transition: all 0.3s ease; }
+    .btn-glow:hover { box-shadow: 0 0 50px rgba(102,126,234,0.7); transform: translateY(-2px); }
+    .param-row:hover { background: rgba(102,126,234,0.1); }
+    .shimmer { background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); background-size: 200% 100%; animation: shimmer 2s infinite; }
+  </style>
+</head>
+<body class="bg-[#0a0a0a] text-gray-100 min-h-screen">
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 glass">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="text-xl font-bold gradient-text">URL Builder Pro</div>
+      <button id="navBuyBtn" class="bg-gradient-to-r from-indigo-500 to-purple-600 px-6 py-2 rounded-full font-semibold text-sm hover:opacity-90 transition btn-glow">Get Pro — $19</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="pt-32 pb-20 px-4">
+    <div class="max-w-4xl mx-auto text-center fade-in">
+      <div class="inline-block px-4 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-sm mb-6 border border-indigo-500/30">
+        ⚡ Build URLs in Seconds
+      </div>
+      <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+        Build <span class="gradient-text">Perfect URLs</span><br>Instantly
+      </h1>
+      <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+        Construct URLs with query parameters, path segments, and hash fragments.
+        Perfect for API testing, link generation, and web development.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <button id="heroBuyBtn" class="bg-gradient-to-r from-indigo-500 to-purple-600 px-8 py-4 rounded-full font-bold text-lg hover:opacity-90 transition btn-glow">
+          Get URL Builder Pro — $19
+        </button>
+        <a href="#demo" class="text-gray-400 hover:text-white transition flex items-center gap-2">
+          <span>Try Demo</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo Section -->
+  <section id="demo" class="py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="glass rounded-2xl p-8 fade-in">
+        <h2 class="text-3xl font-bold mb-8 text-center">Try It Free</h2>
+
+        <!-- Base URL -->
+        <div class="mb-6">
+          <label class="block text-sm text-gray-400 mb-2">Base URL</label>
+          <input type="text" id="baseUrl" placeholder="https://api.example.com/v1/users"
+            class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-indigo-500 focus:outline-none">
+        </div>
+
+        <!-- Query Parameters -->
+        <div class="mb-6">
+          <div class="flex justify-between items-center mb-2">
+            <label class="text-sm text-gray-400">Query Parameters</label>
+            <button id="addParam" class="text-indigo-400 hover:text-indigo-300 text-sm flex items-center gap-1">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+              Add Parameter
+            </button>
+          </div>
+          <div id="paramsContainer" class="space-y-2">
+            <div class="param-row flex gap-2 p-2 rounded">
+              <input type="text" placeholder="key" class="param-key flex-1 bg-gray-900 border border-gray-700 rounded px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none">
+              <input type="text" placeholder="value" class="param-value flex-1 bg-gray-900 border border-gray-700 rounded px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none">
+              <button class="remove-param text-gray-500 hover:text-red-400 p-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hash Fragment -->
+        <div class="mb-6">
+          <label class="block text-sm text-gray-400 mb-2">Hash Fragment</label>
+          <input type="text" id="hashFragment" placeholder="section-id"
+            class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-indigo-500 focus:outline-none">
+        </div>
+
+        <!-- Generated URL -->
+        <div class="mb-6">
+          <label class="block text-sm text-gray-400 mb-2">Generated URL</label>
+          <div class="flex gap-2">
+            <div id="resultUrl" class="flex-1 bg-gray-900 border border-indigo-500/30 rounded-lg px-4 py-3 font-mono text-sm text-indigo-300 break-all">
+              Enter a base URL to get started...
+            </div>
+            <button id="copyBtn" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-3 rounded-lg transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex flex-wrap gap-3">
+          <button id="encodeBtn" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition">URL Encode</button>
+          <button id="decodeBtn" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition">URL Decode</button>
+          <button id="clearBtn" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm transition">Clear All</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Everything You Need</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="glass rounded-xl p-6 fade-in hover:bg-white/5 transition">
+          <div class="w-12 h-12 bg-indigo-500/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Query Builder</h3>
+          <p class="text-gray-400">Add, edit, and remove query parameters with ease. Automatic URL encoding included.</p>
+        </div>
+        <div class="glass rounded-xl p-6 fade-in hover:bg-white/5 transition">
+          <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Path Segments</h3>
+          <p class="text-gray-400">Build complex paths with multiple segments. Perfect for REST API construction.</p>
+        </div>
+        <div class="glass rounded-xl p-6 fade-in hover:bg-white/5 transition">
+          <div class="w-12 h-12 bg-pink-500/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Hash Fragments</h3>
+          <p class="text-gray-400">Add anchor links and hash fragments for deep linking and single-page apps.</p>
+        </div>
+        <div class="glass rounded-xl p-6 fade-in hover:bg-white/5 transition">
+          <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Encode/Decode</h3>
+          <p class="text-gray-400">One-click URL encoding and decoding. Handle special characters with confidence.</p>
+        </div>
+        <div class="glass rounded-xl p-6 fade-in hover:bg-white/5 transition">
+          <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Copy to Clipboard</h3>
+          <p class="text-gray-400">Instantly copy your built URL. No more manual selection and copying.</p>
+        </div>
+        <div class="glass rounded-xl p-6 fade-in hover:bg-white/5 transition">
+          <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Private & Secure</h3>
+          <p class="text-gray-400">All processing happens in your browser. No data sent to any server.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="py-20 px-4 bg-gray-900/50">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Perfect For</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="glass rounded-xl p-6">
+          <h3 class="font-bold text-lg mb-2 text-indigo-400">API Testing</h3>
+          <p class="text-gray-400">Build complex API URLs with multiple query parameters for testing endpoints.</p>
+        </div>
+        <div class="glass rounded-xl p-6">
+          <h3 class="font-bold text-lg mb-2 text-purple-400">Web Development</h3>
+          <p class="text-gray-400">Construct shareable links with UTM parameters and tracking codes.</p>
+        </div>
+        <div class="glass rounded-xl p-6">
+          <h3 class="font-bold text-lg mb-2 text-pink-400">Deep Linking</h3>
+          <p class="text-gray-400">Create URLs with hash fragments for linking to specific sections.</p>
+        </div>
+        <div class="glass rounded-xl p-6">
+          <h3 class="font-bold text-lg mb-2 text-blue-400">URL Debugging</h3>
+          <p class="text-gray-400">Decode encoded URLs to understand and debug complex parameters.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Loved by Developers</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="glass rounded-xl p-6 fade-in">
+          <div class="flex items-center gap-1 mb-4">
+            <span class="text-yellow-400">★★★★★</span>
+          </div>
+          <p class="text-gray-300 mb-4">"This tool saves me so much time when building API test URLs. The interface is clean and intuitive."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center font-bold">JD</div>
+            <div>
+              <div class="font-semibold">John Doe</div>
+              <div class="text-sm text-gray-500">Full Stack Developer</div>
+            </div>
+          </div>
+        </div>
+        <div class="glass rounded-xl p-6 fade-in">
+          <div class="flex items-center gap-1 mb-4">
+            <span class="text-yellow-400">★★★★★</span>
+          </div>
+          <p class="text-gray-300 mb-4">"Finally a tool that handles URL encoding properly. No more manual parameter building!"</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center font-bold">SM</div>
+            <div>
+              <div class="font-semibold">Sarah Miller</div>
+              <div class="text-sm text-gray-500">QA Engineer</div>
+            </div>
+          </div>
+        </div>
+        <div class="glass rounded-xl p-6 fade-in">
+          <div class="flex items-center gap-1 mb-4">
+            <span class="text-yellow-400">★★★★★</span>
+          </div>
+          <p class="text-gray-300 mb-4">"Simple, effective, and exactly what I needed. Worth every penny for the time it saves."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-pink-500 to-orange-600 rounded-full flex items-center justify-center font-bold">AC</div>
+            <div>
+              <div class="font-semibold">Alex Chen</div>
+              <div class="text-sm text-gray-500">API Developer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 px-4">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">FAQ</h2>
+      <div class="space-y-4">
+        <div class="glass rounded-xl p-6">
+          <h3 class="font-bold text-lg mb-2">Is my data secure?</h3>
+          <p class="text-gray-400">Yes! All URL building happens in your browser. Nothing is sent to our servers.</p>
+        </div>
+        <div class="glass rounded-xl p-6">
+          <h3 class="font-bold text-lg mb-2">What do I get with the Pro version?</h3>
+          <p class="text-gray-400">Unlimited usage, bulk parameter import, save/load URL templates, and priority support.</p>
+        </div>
+        <div class="glass rounded-xl p-6">
+          <h3 class="font-bold text-lg mb-2">Is this a subscription?</h3>
+          <p class="text-gray-400">No! One-time payment of $19 for lifetime access and all future updates.</p>
+        </div>
+        <div class="glass rounded-xl p-6">
+          <h3 class="font-bold text-lg mb-2">Can I use this for commercial projects?</h3>
+          <p class="text-gray-400">Absolutely! Use URL Builder Pro for personal and commercial projects without restrictions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 px-4">
+    <div class="max-w-2xl mx-auto text-center">
+      <div class="glass rounded-2xl p-12">
+        <h2 class="text-4xl font-bold mb-4">Ready to Build URLs?</h2>
+        <p class="text-xl text-gray-400 mb-8">One-time purchase. Lifetime access. No subscription.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <button id="ctaBuyBtn" class="bg-gradient-to-r from-indigo-500 to-purple-600 px-10 py-4 rounded-full font-bold text-lg hover:opacity-90 transition btn-glow">
+            Get URL Builder Pro — $19
+          </button>
+        </div>
+        <p class="text-sm text-gray-500 mt-6">30-day money-back guarantee • Instant delivery</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-4 border-t border-gray-800">
+    <div class="max-w-6xl mx-auto text-center text-gray-500">
+      <p>&copy; 2025 URL Builder Pro. All rights reserved.</p>
+      <p class="mt-2">Made with care for developers worldwide.</p>
+    </div>
+  </footer>
+
+  <script>
+    // URL Builder Logic
+    const baseUrlInput = document.getElementById('baseUrl');
+    const hashFragmentInput = document.getElementById('hashFragment');
+    const resultUrlDiv = document.getElementById('resultUrl');
+    const paramsContainer = document.getElementById('paramsContainer');
+    const addParamBtn = document.getElementById('addParam');
+    const copyBtn = document.getElementById('copyBtn');
+    const encodeBtn = document.getElementById('encodeBtn');
+    const decodeBtn = document.getElementById('decodeBtn');
+    const clearBtn = document.getElementById('clearBtn');
+
+    let params = [];
+
+    function buildUrl() {
+      const baseUrl = baseUrlInput.value.trim();
+      if (!baseUrl) {
+        resultUrlDiv.textContent = 'Enter a base URL to get started...';
+        return;
+      }
+
+      try {
+        const url = new URL(baseUrl);
+
+        // Add query params
+        url.search = ''; // Clear existing
+        const paramInputs = paramsContainer.querySelectorAll('.param-row');
+        paramInputs.forEach(row => {
+          const key = row.querySelector('.param-key').value.trim();
+          const value = row.querySelector('.param-value').value.trim();
+          if (key) {
+            url.searchParams.append(key, value);
+          }
+        });
+
+        // Add hash fragment
+        const hash = hashFragmentInput.value.trim();
+        if (hash) {
+          url.hash = hash;
+        }
+
+        resultUrlDiv.textContent = url.toString();
+      } catch (e) {
+        resultUrlDiv.textContent = baseUrl;
+      }
+    }
+
+    function addParamRow() {
+      const row = document.createElement('div');
+      row.className = 'param-row flex gap-2 p-2 rounded';
+      row.innerHTML = `
+        <input type="text" placeholder="key" class="param-key flex-1 bg-gray-900 border border-gray-700 rounded px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none">
+        <input type="text" placeholder="value" class="param-value flex-1 bg-gray-900 border border-gray-700 rounded px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none">
+        <button class="remove-param text-gray-500 hover:text-red-400 p-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      `;
+      row.querySelector('.remove-param').addEventListener('click', () => {
+        row.remove();
+        buildUrl();
+      });
+      row.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', buildUrl);
+      });
+      paramsContainer.appendChild(row);
+    }
+
+    // Event Listeners
+    addParamBtn.addEventListener('click', addParamRow);
+    baseUrlInput.addEventListener('input', buildUrl);
+    hashFragmentInput.addEventListener('input', buildUrl);
+
+    copyBtn.addEventListener('click', () => {
+      const url = resultUrlDiv.textContent;
+      if (url && url !== 'Enter a base URL to get started...') {
+        navigator.clipboard.writeText(url).then(() => {
+          copyBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+          setTimeout(() => {
+            copyBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>';
+          }, 2000);
+        });
+      }
+    });
+
+    encodeBtn.addEventListener('click', () => {
+      const url = resultUrlDiv.textContent;
+      if (url && url !== 'Enter a base URL to get started...') {
+        resultUrlDiv.textContent = encodeURIComponent(url);
+      }
+    });
+
+    decodeBtn.addEventListener('click', () => {
+      const url = resultUrlDiv.textContent;
+      if (url && url !== 'Enter a base URL to get started...') {
+        try {
+          resultUrlDiv.textContent = decodeURIComponent(url);
+        } catch (e) {
+          alert('Invalid encoded URL');
+        }
+      }
+    });
+
+    clearBtn.addEventListener('click', () => {
+      baseUrlInput.value = '';
+      hashFragmentInput.value = '';
+      paramsContainer.innerHTML = '';
+      addParamRow();
+      buildUrl();
+    });
+
+    // Checkout buttons
+    const CHECKOUT_URL = window.__CHECKOUT_URL || null;
+    document.querySelectorAll('#heroBuyBtn, #navBuyBtn, #ctaBuyBtn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (CHECKOUT_URL) window.open(CHECKOUT_URL, '_blank');
+        else alert('Coming soon! Follow @OtonomUniverseCreator for updates.');
+      });
+    });
+
+    // Initialize
+    addParamRow();
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

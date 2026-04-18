@@ -1,0 +1,26 @@
+{
+  "name": "URL Builder Pro",
+  "slug": "url-builder-pro",
+  "tagline": "Build URLs with query parameters, path segments, and hash fragments. Perfect for API testing and link generation.",
+  "description": "Build URLs with query parameters, path segments, and hash fragments. Perfect for API testing and link generation.",
+  "price": "$19",
+  "features": [
+    "Query parameter builder",
+    "Path segment construction",
+    "Hash fragment support",
+    "URL encode/decode",
+    "Copy to clipboard",
+    "Private & secure (client-side only)",
+    "Bulk parameter import (Pro)",
+    "Save URL templates (Pro)"
+  ],
+  "tech_stack": "Vercel + Node.js",
+  "status": "building",
+  "vercel_url": null,
+  "github_url": null,
+  "lemonsqueezy_checkout_url": null,
+  "lemonsqueezy_product_id": null,
+  "webhook_url": "https://url-builder-pro.vercel.app/api/webhook",
+  "created_cycle": 857,
+  "deployed_cycle": null
+}
