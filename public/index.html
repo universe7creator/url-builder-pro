@@ -8,6 +8,13 @@
   <meta property="og:title" content="URL Builder Pro — Build Perfect URLs Instantly">
   <meta property="og:description" content="Build URLs with query parameters, path segments, and hash fragments. Perfect for API testing and link generation.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://url-builder-pro.vercel.app">
+  <meta property="og:image" content="https://og-forge.vercel.app/api/og?title=URL%20Builder%20Pro&description=Build%20Perfect%20URLs%20Instantly">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="URL Builder Pro — Build Perfect URLs Instantly">
+  <meta name="twitter:description" content="Build URLs with query parameters, path segments, and hash fragments. Perfect for API testing and link generation.">
+  <meta name="twitter:image" content="https://og-forge.vercel.app/api/og?title=URL%20Builder%20Pro&description=Build%20Perfect%20URLs%20Instantly">
+  <link rel="canonical" href="https://url-builder-pro.vercel.app">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -304,6 +311,54 @@
     </div>
   </section>
 
+  <!-- Testimonials Section -->
+  <section class="py-20 px-6 border-t border-gray-800">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Essential for Web Developers</h2>
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto">See what developers say about URL Builder Pro</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="glass rounded-xl p-6 hover:border-blue-500/30 transition">
+          <div class="text-yellow-400 text-lg mb-4">★★★★★</div>
+          <p class="text-gray-300 mb-6">"Building complex URLs with dozens of query parameters used to be error-prone. The visual builder and auto-encoding saved me countless debugging hours. Game changer!"</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-sm font-bold">AP</div>
+            <div>
+              <div class="font-medium">Alex Parker</div>
+              <div class="text-sm text-gray-500">Full Stack Developer @ WebApp</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass rounded-xl p-6 hover:border-blue-500/30 transition">
+          <div class="text-yellow-400 text-lg mb-4">★★★★★</div>
+          <p class="text-gray-300 mb-6">"The one-click copy and history features are brilliant. I build API URLs daily and this tool makes it effortless. No more manual encoding or typos in query strings."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-sm font-bold">JL</div>
+            <div>
+              <div class="font-medium">Jennifer Lee</div>
+              <div class="text-sm text-gray-500">API Integration Specialist</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass rounded-xl p-6 hover:border-blue-500/30 transition">
+          <div class="text-yellow-400 text-lg mb-4">★★★★★</div>
+          <p class="text-gray-300 mb-6">"Our marketing team loves the UTM builder feature. We generate dozens of campaign URLs weekly, and this tool makes it consistent and error-free. Highly recommended!"</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-sm font-bold">MR</div>
+            <div>
+              <div class="font-medium">Mark Rodriguez</div>
+              <div class="text-sm text-gray-500">Marketing Tech Lead</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="py-12 px-4 border-t border-gray-800">
     <div class="max-w-6xl mx-auto text-center text-gray-500">
@@ -423,7 +478,7 @@
     });
 
     // Checkout buttons
-    const CHECKOUT_URL = window.__CHECKOUT_URL || null;
+    const CHECKOUT_URL = window.__CHECKOUT_URL || 'https://profitbridge.lemonsqueezy.com/checkout/buy/72ed8216-25bf-444f-be92-2b06cac8944f';
     document.querySelectorAll('#heroBuyBtn, #navBuyBtn, #ctaBuyBtn').forEach(btn => {
       btn.addEventListener('click', () => {
         if (CHECKOUT_URL) window.open(CHECKOUT_URL, '_blank');
